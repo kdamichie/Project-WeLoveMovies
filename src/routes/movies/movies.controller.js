@@ -42,6 +42,6 @@ async function listReviewsByMovie(req, res) {
 module.exports = {
   list: asyncErrorBoundary(list),
   read: [asyncErrorBoundary(read), read],
-  listTheaters: [asyncErrorBoundary(movieExists), asyncErrorBoundary(listTheatersByMovie)],
-  listReviews: [asyncErrorBoundary(movieExists), asyncErrorBoundary(listReviewsByMovie)],
+  listTheatersByMovie: [asyncErrorBoundary(movieExists), asyncErrorBoundary(listTheatersByMovie)],
+  listReviewsByMovie: [asyncErrorBoundary(movieExists), asyncErrorBoundary(listReviewsByMovie)],
 }
