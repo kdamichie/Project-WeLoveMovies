@@ -14,14 +14,6 @@ function mapCriticProperties(reviews) {
   );
 }
 
-function listReviews() {
-  return knex("reviews as r")
-    .join("cristics as c", "c.critic_id", "r.critic_id")
-    .select(["r.review_id", "r.content", "r.score", "r.created_at", "r.updated_at", "r.critic_id", "r.movie_id", "c.*"])
-    .where({ "r.movie_id": movie_id})
-    .then(mapCriticProperties);
-}
-
 function list() {
   return knex("movies").select("*");
 }
@@ -49,15 +41,14 @@ function listTheatersByMovie() {
 }
 
 function listReviewsByMovie() {
-  return knex("reviewers as r")
-    .join("critics as c", "c.critic_id", "r.critic_id")
-    .select("r.*", "c.*")
-    .where({ "r.movie_id": movie_id })
-    .then(reviews)
+  return knex("reviews as r")
+    .join("cristics as c", "c.critic_id", "r.critic_id")
+    .select(["r.review_id", "r.content", "r.score", "r.created_at", "r.updated_at", "r.critic_id", "r.movie_id", "c.*"])
+    .where({ "r.movie_id": movie_id})
+    .then(mapCriticProperties);
 }
 
 module.exports = {
-  listReviewers: listReviews,
   list,
   listIsShowing,
   read,
