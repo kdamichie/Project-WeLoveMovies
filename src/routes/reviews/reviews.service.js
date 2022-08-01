@@ -11,15 +11,26 @@ const mapCriticProperties = mapProperties({
 });
 
 function update(updatedReview) {
-
+  return knex("reviews as r")
+    .select("*")
+    .where({ "r.review_id": updatedReview.review_id })
+    .update(updatedReview)
+    .then((updatedReview) => updatedReview[0]);
 }
 
-function read(review_id) {
-
+function read(reviewId) {
+  return knex("reviews")
+  .select("*")
+  .where({ review_id : reviewId })
+  .first();
 }
 
 function destroy(reviewId) {
-
+  return knex(reviewId)
+    .select("*")
+    .where({ "r.review_id": reviewId })
+    .first()
+    .del();
 }
 
 module.exports = {
