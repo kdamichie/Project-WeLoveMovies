@@ -16,10 +16,10 @@ async function reviewExists(req, res, next) {
 }
 
 async function update(req, res) {
-  const review = res.locals.review.review_id;
-  const updatedReview = { ...req.body.data, review_id: review };
+  const reviewId = res.locals.review.review_id;
+  const updatedReview = { ...req.body.data, review_id: reviewId };
   await service.update(updatedReview);
-  res.json({ data: await service.read(review) });
+  res.json({ data: await service.read(reviewId) });
 }
 
 async function destroy(req, res) {
