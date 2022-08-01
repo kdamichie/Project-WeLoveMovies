@@ -22,10 +22,10 @@ function listIsShowing() {
     .where({ "mt.is_showing": true });
 }
 
-function read() {
-  return knex("movies as m")
+function read(movieId) {
+  return knex("movies")
   .select("*")
-  .where({ "m.movie_id": movieId })
+  .where({ movie_id : movieId })
   .first();
 }
 
