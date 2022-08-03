@@ -31,13 +31,13 @@ function read(req, res) {
 }
 
 async function listTheatersByMovie(req, res) {
-  const movieId = await res.locals.movie.movie_id;
-  res.json({ data: service.listTheatersByMovie(movieId) });
+  const theaters = await service.listTheatersByMovie(res.locals.movie);
+  res.json({ data: theaters })
 }
 
 async function listReviewsByMovie(req, res) {
-  const movieId = await res.locals.movie.movie_id;
-  res.json({ data: service.listReviewsByMovie(movieId) });
+  const reviews = await service.listReviewsByMovie(res.locals.movie);
+  res.json({ data: reviews });
 }
 
 module.exports = {
