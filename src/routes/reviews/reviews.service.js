@@ -26,7 +26,7 @@ function read(reviewId) {
 }
 
 function destroy(reviewId) {
-  return knex(reviewId)
+  return knex("reviews as r")
     .select("*")
     .where({ "r.review_id": reviewId })
     .first()
